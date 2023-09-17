@@ -15,3 +15,6 @@ def shop(request):
 
 def about(request):
     return render(request, 'about.html')
+
+def export(request):
+    return render(request, 'export.html')
