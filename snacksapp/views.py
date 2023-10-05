@@ -18,3 +18,11 @@ def about(request):
 
 def export(request):
     return render(request, 'export.html')
+
+
+def product(request, snack_name):
+    snack = SnackItem.objects.get(name=snack_name)
+    return render(request, 'product.html', {'snack':snack})
+
+def analyse(request):
+    return render(request, 'analyse.html')
