@@ -15,7 +15,8 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
-
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
@@ -26,6 +27,18 @@
     <link href={% static "css/style.css" %} rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://code.jscharting.com/latest/jscharting.js"></script>
+    <style>
+        .container {
+            width: 80%;
+            margin: 20px auto;
+          }
+          
+          .p {
+            text-align: center;
+            font-size: 14px;
+            padding-top: 140px;
+          }
+    </style>
 </head>
 
 <body>
@@ -127,6 +140,8 @@
                             <a href="/about" class="nav-item nav-link">About Us</a>
                             <a href="/export" class="nav-item nav-link">Export details</a>
                             <a href="/contact" class="nav-item nav-link">Contact</a>
+                            <a href="/analyse" class="nav-item nav-link">Analyse</a>
+
                         </div>
                     </div>
                 </nav>
@@ -204,9 +219,108 @@
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+    <script>
 
+        var DEFAULT_DATASET_SIZE = 7,
+			addedCount = 0,
+		    color = Chart.helpers.color;
 
-    <!-- JavaScript Libraries -->
+	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+	var chartColors = {
+		red: 'rgb(255, 99, 132)',
+		orange: 'rgb(255, 159, 64)',
+		yellow: 'rgb(255, 205, 86)',
+		green: 'rgb(75, 192, 192)',
+		blue: 'rgb(54, 162, 235)',
+		purple: 'rgb(153, 102, 255)',
+		grey: 'rgb(231,233,237)'
+	};
+
+function randomScalingFactor() {
+		return Math.round(Math.random() * 100);
+	}
+
+var barData = {
+			labels: ["January", "February", "March", "April", "May", "June", "July"],
+			datasets: [{
+				label: 'Khakhra',
+				backgroundColor: color(chartColors.green).alpha(0.5).rgbString(),
+				borderColor: chartColors.red,
+				borderWidth: 1,
+				data: [
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor()
+				]
+			}, {
+				label: 'Papad',
+				backgroundColor: color(chartColors.blue).alpha(0.5).rgbString(),
+				borderColor: chartColors.red,
+				borderWidth: 1,
+				data: [
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor()
+				]
+			},{
+				label: 'Gathiya',
+				backgroundColor: color(chartColors.purple).alpha(0.5).rgbString(),
+				borderColor: chartColors.red,
+				borderWidth: 1,
+				data: [
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor()
+				]
+			},{
+				label: 'Chorafali',
+				backgroundColor: color(chartColors.orange).alpha(0.5).rgbString(),
+				borderColor: chartColors.blue,
+				borderWidth: 1,
+				data: [
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor()
+				]
+			}]
+
+		};
+var index = 11;
+var ctx = document.getElementById("barChart").getContext("2d");
+		var	myNewChartB = new Chart(ctx, {
+				type: 'bar',
+				data: barData,
+				options: {
+					responsive: true,
+          maintainAspectRation: true,
+					legend: {
+						position: 'top',
+					},
+					title: {
+						display: true,
+						text: 'Snacks vs monthly sales'
+					}
+				}
+			});
+
+    </script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src={% static "lib/easing/easing.min.js" %}></script>
